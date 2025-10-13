@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📊 Consulta de Situação - CPNU
 
-## Getting Started
+📄 Descrição
+Este projeto é uma ferramenta de consulta desenvolvida para oferecer uma interface clara, rápida e acessível para que os candidatos do Concurso Público Nacional Unificado (CPNU) possam verificar sua situação e classificação detalhada no cadastro de reserva.
 
-First, run the development server:
+A motivação por trás deste projeto é promover a transparência e facilitar o controle social sobre os resultados e convocações do concurso.
 
-```bash
+🚀 Acesso ao Site
+Acesse a versão online e faça sua consulta agora mesmo!
+
+https://cpnu-consulta-situacao.vercel.app/ ## ✨ Funcionalidades
+
+Consulta Rápida: Busque sua situação utilizando apenas o número de inscrição.
+
+Classificação Detalhada: Visualize sua posição nas diferentes listas de concorrência:
+
+Ampla Concorrência (AC)
+
+Pessoas Pretas ou Pardas (PPP)
+
+Pessoas com Deficiência (PcD)
+
+Indígenas
+
+Notificações em Tempo Real: Feedback instantâneo sobre o status da busca e resultados.
+
+Interface Responsiva: Acessível e funcional em qualquer dispositivo, seja desktop, tablet ou celular.
+
+🛠️ Tecnologias Utilizadas
+Este projeto foi construído com as seguintes tecnologias e ferramentas:
+
+Frontend:
+
+Next.js - Framework React para produção.
+
+React - Biblioteca para construir interfaces de usuário.
+
+TypeScript - Superset do JavaScript que adiciona tipagem estática.
+
+Tailwind CSS - Framework CSS utility-first para estilização rápida.
+
+React Toastify - Para notificações e alertas.
+
+Analytics:
+
+Google Analytics - Para monitoramento de tráfego.
+
+Fonte dos Dados:
+
+Os dados exibidos são processados a partir de um banco de dados SQLite, consolidando as informações dos 8 blocos do concurso.
+
+Hospedagem:
+
+Vercel - Plataforma de hospedagem otimizada para projetos Next.js.
+
+⚙️ Como Executar o Projeto Localmente
+Siga os passos abaixo para rodar este projeto na sua máquina.
+
+Pré-requisitos
+Node.js (versão 18 ou superior)
+
+Git
+
+Passos
+Clone o repositório:
+
+Bash
+
+git clone https://github.com/seu-usuario/seu-repositorio.git
+cd seu-repositorio
+Instale as dependências:
+
+Bash
+
+npm install
+# ou
+yarn install
+# ou
+pnpm install
+Configure as Variáveis de Ambiente:
+
+Crie um arquivo chamado .env.local na raiz do projeto.
+
+Adicione as variáveis necessárias. No mínimo, a do Google Analytics:
+
+Snippet de código
+
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+Rode o servidor de desenvolvimento:
+
+Bash
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Abra no navegador:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse http://localhost:3000 no seu navegador para ver o projeto funcionando.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+📝 Licença
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+👨‍💻 Autor
+Feito com ❤️ por Matheus Costa.

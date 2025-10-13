@@ -7,11 +7,12 @@ import ResultTable from "./ResultTable";
 
 interface DataItem {
     cargo: string,
+    orgao: string,
+    ordem_pref: number,
     class_ampla: number,
     class_ppp: number,
     class_pcd: number,
     class_ind: number,
-    orgao: string
 }
 
 function Hero() {

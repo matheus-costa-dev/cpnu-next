@@ -32,12 +32,13 @@ export async function GET(
             SELECT 
                 orgao,
                 cargo,
-                class_ampla_especifica_atualizada as class_ampla,
-                class_negra_especifica_atualizada as class_ppp,
-                class_pcd_especifica_atualizada as class_pcd,
-                class_indigena_especifica_atualizada as class_ind
+                ordem_pref,
+                class_ampla,
+                class_ppp,
+                class_pcd,
+                class_ind
             FROM
-                tbl_bloco7
+                vw_cpnu
             WHERE
                 inscricao = ?;
         `;

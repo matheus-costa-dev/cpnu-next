@@ -60,7 +60,25 @@ export default function RootLayout({
           theme="dark" // Perfeito para o seu design
         />
       </body>
-     {/* 2. Adicione os scripts do Google Analytics aqui, fora do body principal, mas dentro do <html> */}
+
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `,
+        }}
+      />
+
+
+      {/* 2. Adicione os scripts do Google Analytics aqui, fora do body principal, mas dentro do <html> */}
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}

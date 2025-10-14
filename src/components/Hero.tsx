@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react"
 import { toast } from 'react-toastify';
 import ResultTable from "./ResultTable";
+import FaqSection from "./FaqSection";
+import ContactSection from "./ContactSection";
 
 
 interface DataItem {
@@ -75,7 +77,7 @@ function Hero() {
 
     return (
         <main className="flex-grow flex items-center overflow-x-hidden my-5">
-            <section className="w-full h-full" >
+            <section className="w-full h-full flex flex-col justify-between gap-10" >
                 <div
                     className="container mx-auto px-4 text-center"
                     ref={searchContainerRef}>
@@ -108,6 +110,10 @@ function Hero() {
                             />
                         )
                     }
+                </div>
+                <div>
+                    <FaqSection />
+                    <ContactSection />
                 </div>
             </section>
 

@@ -40,7 +40,8 @@ export async function GET(
             FROM
                 vw_cpnu
             WHERE
-                inscricao = ?;
+                inscricao = ?
+            ORDER BY ordem_pref ASC;
         `;
 
      

@@ -81,7 +81,7 @@ function Hero() {
                 <div
                     className="container mx-auto px-4 text-center"
                     ref={searchContainerRef}>
-                    <h1 className="text-white font-bold text-2xl"> Consulte sua situação no Cadastro de Reserva do CPNU</h1>
+                    <h1 className="text-white font-bold text-3xl"> Consulte sua situação no Cadastro de Reserva do CPNU</h1>
                     <p className="text-lg text-gray-300 mb-8">
                         Digite o número da sua inscrição abaixo para ver os detalhes da sua classificação.
                     </p>

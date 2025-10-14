@@ -74,7 +74,7 @@ function FaqSection() {
     return (
         <section className="w-full mt-auto">
             <div className="container mx-auto px-6 md:px-4 max-w-4xl">
-                <h3 className="text-2xl font-bold text-white text-center mb-12">
+                <h3 className="text-3xl font-bold text-white text-center mb-12">
                     Perguntas Frequentes (FAQ)
                 </h3>
 

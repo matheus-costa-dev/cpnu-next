@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import ResultTable from "./ResultTable";
 import FaqSection from "./FaqSection";
 import ContactSection from "./ContactSection";
-
+import PixSection from "./PixSection";
 
 interface DataItem {
     cargo: string,
@@ -114,6 +114,7 @@ function Hero() {
                 <div>
                     <FaqSection />
                     <ContactSection />
+                    <PixSection />
                 </div>
             </section>
 

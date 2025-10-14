@@ -28,10 +28,10 @@ export const metadata: Metadata = {
   title: "Consulta CPNU - Classificação no Cadastro de Reserva",
   
   // 2. Descrição Otimizada
-  description: "Consulte sua classificação detalhada no Cadastro de Reserva do CPNU. Ferramenta não oficial para verificar sua posição por cargo, bloco e cotas.",
+  description: "Consulte de forma rápida e clara sua classificação detalhada no Cadastro de Reserva do CPNU. Ferramenta não oficial para verificar sua posição por cargo, bloco e cotas.",
   
   // 3. Palavras-chave (Keywords)
-  keywords: "CPNU, Concurso Nacional Unificado, Cadastro de Reserva, Consulta CPNU, Classificação CPNU, Resultado CPNU, Concurso Público",
+  keywords: "CPNU, Concurso Nacional Unificado, Consulta CPNU, Classificação CPNU, Resultado CPNU, Cadastro de Reserva, Concurso Público, consultar classificação cpnu, ver minha posição concurso unificado, lista de espera cpnu",
   
   // 4. Autor
   authors: [{ name: 'Matheus Costa', url: 'https://portfolio-brown-gamma-63.vercel.app/' }],

@@ -2,10 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { toast } from 'react-toastify';
-import ResultTable from "./ResultTable";
-import FaqSection from "./FaqSection";
-import ContactSection from "./ContactSection";
-import PixSection from "./PixSection";
+import ResultTable from "./UI/ResultTable";
 
 interface DataItem {
     cargo: string,
@@ -111,11 +108,7 @@ function Hero() {
                         )
                     }
                 </div>
-                <div>
-                    <FaqSection />
-                    <ContactSection />
-                    <PixSection />
-                </div>
+       
             </section>
 
         </main>

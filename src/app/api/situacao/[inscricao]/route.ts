@@ -38,7 +38,7 @@ export async function GET(
                 class_pcd,
                 class_ind
             FROM
-                vw_cpnu
+                vw_withFilter_cpnu
             WHERE
                 inscricao = ?
             ORDER BY ordem_pref ASC;

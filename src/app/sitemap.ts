@@ -10,11 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     // Adicione outras páginas estáticas aqui se você as criar no futuro
-    // {
-    //   url: 'https://www.consultacpnu.com.br/sobre',
-    //   lastModified: new Date(),
-    //   changeFrequency: 'monthly',
-    //   priority: 0.8,
-    // },
+    
   ]
 }

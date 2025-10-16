@@ -39,3 +39,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python
+
+## pycache
+__pycache__/
+
+## venv
+venv/
+
+## python data
+
+python/cpnu.db
+python/saidas/

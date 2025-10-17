@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import PixSection from '@/components/PixSection'
 import type { Metadata } from 'next'; 

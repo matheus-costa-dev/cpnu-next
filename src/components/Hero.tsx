@@ -83,7 +83,9 @@ function Hero() {
                         Digite o número da sua inscrição abaixo para ver os detalhes da sua classificação.
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+                        <label htmlFor="search-inscricao" className="sr-only">Número de Inscrição</label>
                         <input
+                            id="search-inscricao"
                             type="number"
                             placeholder="Digite o nº da sua inscrição"
                             className="w-full px-4 py-3 bg-gray-800 border-2 border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"

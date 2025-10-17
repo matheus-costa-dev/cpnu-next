@@ -1,6 +1,5 @@
 import pandas as pd
 from os.path import join
-# Supondo que os arquivos estão na mesma pasta (pacote)
 from .utils import remover_acentos, cols_to_numeric, tratar_base
 from .persistencia import export_to_db
 
@@ -18,7 +17,6 @@ class ProcessadorCPNU():
         return df
     
     def tratar_colunas(self, df:pd.DataFrame) -> pd.DataFrame:
-        # Criar uma cópia para evitar SettingWithCopyWarning
         df = df.copy()
         cols = [ col.strip().replace(" ","_").replace("?","").replace("\n","_").replace(".","").lower() for col in df.columns]
         cols = [remover_acentos(col) for col in cols]

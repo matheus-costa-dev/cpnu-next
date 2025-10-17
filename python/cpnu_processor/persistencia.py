@@ -28,9 +28,3 @@ def convert_to_csv(dbName:str, tbl_or_view_name:str, csvName:str) -> None:
     with sqlite3.connect(db_path) as conn:
         df = pd.read_sql(f"SELECT * FROM {tbl_or_view_name}", conn)
         df.to_csv(output_path, index=False)
-
-# import pandas as pd
-# import sqlite3
-# df = pd.read_sql("SELECT * FROM all_cpnu", sqlite3.Connection("cpnu.db"))
-
-# df.to_csv("cpnu.csv", index=False)

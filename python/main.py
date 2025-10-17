@@ -1,12 +1,8 @@
 from cpnu_processor.processador import ProcessadorCPNU
 
 def executar_pipeline_completo():
-    """
-    Executa o pipeline de ETL para todos os blocos do CPNU.
-    """
     print("--- INICIANDO PROCESSAMENTO GERAL DO CPNU ---")
     
-    # Você pode fazer um loop para processar todos os blocos
     for n_bloco in range(1, 9):
         try:
             print(f"\nProcessando Bloco {n_bloco}...")

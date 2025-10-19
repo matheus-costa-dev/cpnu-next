@@ -37,7 +37,27 @@ UNION ALL
 SELECT * FROM tbl_noFilter_bloco8;
 """
 
+sql_createView_vw_tbl_apoio = """
+SELECT cod_cargo, orgao, cargo, especialidade FROM tbl_noFilter_bloco1
+UNION
+SELECT cod_cargo, orgao, cargo, especialidade FROM tbl_noFilter_bloco2
+UNION
+SELECT cod_cargo, orgao, cargo, especialidade FROM tbl_noFilter_bloco3
+UNION
+SELECT cod_cargo, orgao, cargo, especialidade FROM tbl_noFilter_bloco4
+UNION
+SELECT cod_cargo, orgao, cargo, especialidade FROM tbl_noFilter_bloco5
+UNION
+SELECT cod_cargo, orgao, cargo, especialidade FROM tbl_noFilter_bloco6
+UNION
+SELECT cod_cargo, orgao, cargo, especialidade FROM tbl_noFilter_bloco7
+UNION
+SELECT cod_cargo, orgao, cargo, especialidade FROM tbl_noFilter_bloco8
+"""
+
 if __name__ == "__main__":
-    create_views("vw_withFilter_cpnu",sql_createView_vw_cpnu)
-    create_views("vw_noFilter_cpnu",sql_createView_noFilter)
-    convert_to_csv("cpnu","vw_noFilter_cpnu","cpnu.csv")
+    # create_views("vw_withFilter_cpnu",sql_createView_vw_cpnu)
+    # create_views("vw_noFilter_cpnu",sql_createView_noFilter)
+    # create_views("vw_tbl_apoio",sql_createView_vw_tbl_apoio)
+    # convert_to_csv("cpnu.db","vw_noFilter_cpnu","cpnu.csv")
+    convert_to_csv("cpnu.db", "vw_tbl_apoio", "tbl_apoio_cod_cargo.csv")

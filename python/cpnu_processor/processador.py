@@ -1,8 +1,9 @@
 import pandas as pd
 from os.path import join
-# Supondo que os arquivos estão na mesma pasta (pacote)
-from .utils import remover_acentos, cols_to_numeric, tratar_base
+from .utils import cols_to_numeric
 from .persistencia import export_to_db
+from unidecode import unidecode
+
 
 class ProcessadorCPNU():
     def __init__(self, n_bloco:int):
@@ -21,7 +22,7 @@ class ProcessadorCPNU():
         # Criar uma cópia para evitar SettingWithCopyWarning
         df = df.copy()
         cols = [ col.strip().replace(" ","_").replace("?","").replace("\n","_").replace(".","").lower() for col in df.columns]
-        cols = [remover_acentos(col) for col in cols]
+        cols = [unidecode(col) for col in cols]
         cols[10:18]= ["class_ampla_geral", "class_pcd_geral", "class_negra_geral", "class_indigena_geral", "class_ampla_especifica", "class_pcd_especifica", "class_negra_especifica", "class_indigena_especifica"]
         df.columns = cols
         df = cols_to_numeric(df)
@@ -32,29 +33,24 @@ class ProcessadorCPNU():
         return dfs
     
 
-    def aplicando_tratamento(self, dfs:dict) -> dict:
-        dfs_tratados = {key: tratar_base(df) for key, df in dfs.items()}
-        return dfs_tratados
-    
-
     def juntando_dados(self, dfs_tratados: dict) -> pd.DataFrame:
         lista_de_dfs = list(dfs_tratados.values())
         df_completed = pd.concat(lista_de_dfs, axis=0, ignore_index=True)
         return df_completed
     
-    def routine(self) -> pd.DataFrame:
+    def routine(self, with_transform: bool = True) -> pd.DataFrame:
         df = self.obter_dados()
         df_tratado = self.tratar_colunas(df)
-        dfs = self.separate_tables(df_tratado)
-        dfs_tratados = self.aplicando_tratamento(dfs)
-        df_completed = self.juntando_dados(dfs_tratados)
-        return df_completed
 
-    def routine_with_export(self, tblName:str) -> None:
-        df_completed = self.routine()
-        export_to_db(dbName="cpnu", tblName=tblName, df_completed=df_completed)
+        if not with_transform:
+            return df_tratado
+        
 
-    def routine_with_export_without_transform(self, tblName:str) -> None:
-        df = self.obter_dados()
-        df_tratado = self.tratar_colunas(df)
-        export_to_db(dbName="cpnu", tblName=tblName, df_completed=df_tratado)
+        df_tratado["interesse"] = df_tratado["interesse"].str.replace("-", "Não")
+        return df_tratado
+
+
+
+    def routine_with_export(self, tblName:str, with_transform: bool = True) -> None:
+        df_completed = self.routine(with_transform=with_transform)
+        export_to_db(dbName="cpnu", tblName=tblName, df=df_completed)

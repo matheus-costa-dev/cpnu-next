@@ -6,6 +6,7 @@ import DataTable, {TableColumn} from 'react-data-table-component'
 type Resultado = {
     cargo: string,
     orgao: string,
+    especialidade: string,
     ordem_pref: number,
     class_ampla: number,
     class_ppp: number | null,
@@ -22,6 +23,11 @@ const columns: TableColumn<Resultado>[] = [
     {
         name:"Cargo",
         selector: row => row.cargo,
+        sortable: true,
+    },
+    {
+        name:"Especialidade",
+        selector: row => row.especialidade,
         sortable: true,
     },
     {

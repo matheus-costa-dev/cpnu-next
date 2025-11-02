@@ -1,30 +1,37 @@
-import sqlite3
-import pandas as pd
-from os.path import join
+from pandas import DataFrame, read_sql
+from sqlalchemy import create_engine
 
-def export_to_db(dbName:str, tblName:str, df_completed:pd.DataFrame) -> None:
-    db_path = f"{dbName}.db"
-    with sqlite3.connect(db_path) as conn:
-        df_completed.to_sql(
-            name=tblName, 
-            con=conn, 
-            if_exists="replace",
-            index=False
-        )
+class DB:
+    def __init__(self, connection_string):
+        self.engine = create_engine(connection_string) 
 
+    def get_tbl(self, sql_query,**kwargs):
+        """
+        Retorna um dataframe do banco de dados
+        """
+        df = read_sql(sql_query, self.engine, **kwargs)
+        return df
 
-def create_views(viewName:str, sql_command:str) -> None:
-    sql_command = f"CREATE VIEW {viewName} as {sql_command}"
-    with sqlite3.connect("cpnu.db") as conn:
-        cursor = conn.cursor()
-        cursor.execute(f"DROP VIEW IF EXISTS {viewName}")
-        cursor.execute(sql_command)
-        conn.commit()
+    def export_to_db(self, df:DataFrame, tblName,**kwargs):
+        """
+        Envia um dataframe para o banco de dados com o nome da tabela
+        """
+        df.to_sql(tblName, self.engine, **kwargs)
+        print(f"dados da {tblName} enviado com sucesso")
 
 
-def convert_to_csv(dbName:str, tbl_or_view_name:str, csvName:str) -> None:
-    db_path = f"{dbName}.db"
-    output_path = join("saidas", csvName)
-    with sqlite3.connect(db_path) as conn:
-        df = pd.read_sql(f"SELECT * FROM {tbl_or_view_name}", conn)
-        df.to_csv(output_path, index=False)
+    def __enter__(self):
+        """
+        Chamado ao entrar no bloco 'with'.
+        Retorna o objeto que será usado na variável 'as'.
+        """
+        print("ENTRANDO: __enter__ (pronto para usar)")
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        """
+        Chamado ao sair do bloco 'with'.
+        É aqui que você faz a limpeza.
+        """
+        print("SAINDO: __exit__ (limpando e fechando engine)")
+        self.engine.dispose()

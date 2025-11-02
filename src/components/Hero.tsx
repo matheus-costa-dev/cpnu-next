@@ -7,6 +7,7 @@ import ResultTable from "./UI/ResultTable";
 interface DataItem {
     cargo: string,
     orgao: string,
+    especialidade: string,
     ordem_pref: number,
     class_ampla: number,
     class_ppp: number,

@@ -1,9 +1,4 @@
-import unicodedata
 import pandas as pd
-
-def remover_acentos(txt:str)->str:
-        txt = "".join([c for c in unicodedata.normalize("NFKD", txt) if not unicodedata.combining(c)])
-        return txt
 
 def cols_to_numeric(df:pd.DataFrame):
     cols_numericas = ["bloco", "cod_cargo", "ordem_pref","inscricao","nota_final" ,"class_ampla_geral", "class_pcd_geral", "class_negra_geral",
@@ -37,3 +32,4 @@ def tratar_base(df:pd.DataFrame) -> pd.DataFrame:
             'class_ampla_especifica_atualizada','class_negra_especifica_atualizada','class_pcd_especifica_atualizada','class_indigena_especifica_atualizada']]
 
         return tmp
+

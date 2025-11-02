@@ -42,6 +42,10 @@ next-env.d.ts
 
 # python
 
+## file
+
+apagar.py
+
 ## pycache
 __pycache__/
 

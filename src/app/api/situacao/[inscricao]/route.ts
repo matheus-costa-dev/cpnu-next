@@ -23,7 +23,6 @@ export async function GET(
 
         const sql = neon(process.env.NEON_CONNECTION_STRING)
     
-
         const rows = await sql `
             SELECT 
                 inscricao,

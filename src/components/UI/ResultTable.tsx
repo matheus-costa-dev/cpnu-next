@@ -11,7 +11,7 @@ type Resultado = {
     class_ampla: number,
     class_ppp: number | null,
     class_pcd: number | null,
-    class_ind: number | null,
+    class_indigena: number | null,
 }
 
 const columns: TableColumn<Resultado>[] = [
@@ -55,7 +55,7 @@ const columns: TableColumn<Resultado>[] = [
     },
     {
         name:"Indigena",
-        selector: row => row.class_ind ?? "N/A",
+        selector: row => row.class_indigena ?? "N/A",
         center: true,
         sortable: true
     }

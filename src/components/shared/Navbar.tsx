@@ -16,6 +16,10 @@ const links: linksType[] = [
     href: "/"
   },
   {
+    title: "Estimativa",
+    href: "/estimativa"
+  },
+  {
     title: "Dashboard",
     href: "/dashboard",
   },

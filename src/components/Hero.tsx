@@ -3,21 +3,22 @@
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import ResultTable from "./UI/ResultTable";
+import { TableColumn } from "react-data-table-component";
 
-interface DataItem {
+type Resultado = {
   cargo: string;
   orgao: string;
   especialidade: string;
   ordem_pref: number;
   class_ampla: number;
-  class_ppp: number;
-  class_pcd: number;
-  class_indigena: number;
-}
+  class_ppp: number | null;
+  class_pcd: number | null;
+  class_indigena: number | null;
+};
 
 function Hero() {
   const [inscricao, setInscricao] = useState<number | null>(null);
-  const [data, setData] = useState<DataItem[] | null>([]);
+  const [data, setData] = useState<Resultado[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const searchContainerRef = useRef<HTMLDivElement>(null);
@@ -72,6 +73,42 @@ function Hero() {
     }
   }
 
+  // Colunas específicas do HERO (iguais às que você já tinha)
+  const columns: TableColumn<Resultado>[] = [
+    { name: "Órgão", selector: (row) => row.orgao, sortable: true },
+    { name: "Cargo", selector: (row) => row.cargo, sortable: true },
+    {
+      name: "Especialidade",
+      selector: (row) => row.especialidade,
+      sortable: true,
+    },
+    { name: "Preferência", selector: (row) => row.ordem_pref, sortable: true },
+    {
+      name: "Ampla",
+      selector: (row) => row.class_ampla,
+      sortable: true,
+      cell: (row) => row.class_ampla ?? "N/A",
+    },
+    {
+      name: "PPP",
+      selector: (row) => row.class_ppp ?? NaN,
+      sortable: true,
+      cell: (row) => row.class_ppp ?? "N/A",
+    },
+    {
+      name: "PCD",
+      selector: (row) => row.class_pcd ?? NaN,
+      sortable: true,
+      cell: (row) => row.class_pcd ?? "N/A",
+    },
+    {
+      name: "Indigena",
+      selector: (row) => row.class_indigena ?? NaN,
+      sortable: true,
+      cell: (row) => row.class_indigena ?? "N/A",
+    },
+  ];
+
   return (
     <main className="flex-grow flex items-center overflow-x-hidden my-5">
       <section className="w-full h-full flex flex-col justify-between gap-10">
@@ -84,8 +121,13 @@ function Hero() {
             Consulte sua situação no Cadastro de Reserva do CPNU
           </h1>
           <p className="text-lg text-gray-300 mb-8">
-            Digite o número da sua inscrição abaixo para ver os detalhes da sua
-            classificação.
+            Digite o número da sua inscrição para acessar informações detalhadas
+            sobre sua posição no Cadastro de Reserva do Concurso Público
+            Nacional Unificado (CPNU). Este recurso foi desenvolvido para
+            oferecer transparência e praticidade, permitindo que você acompanhe
+            sua classificação com base nos dados oficiais do certame. Use esta ferramenta para
+            entender melhor sua situação e planejar seus próximos passos com
+            segurança.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
             <label htmlFor="search-inscricao" className="sr-only">
@@ -114,7 +156,12 @@ function Hero() {
         </div>
         <div ref={tableContainerRef} className="hidden container mx-auto px-4">
           {data && data.length > 0 && (
-            <ResultTable data={data} loading={loading} />
+            <ResultTable<Resultado>
+              data={data}
+              columns={columns}
+              loading={loading}
+              className="w-full"
+            />
           )}
         </div>
       </section>

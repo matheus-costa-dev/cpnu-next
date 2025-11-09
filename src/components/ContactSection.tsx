@@ -1,73 +1,104 @@
 "use client";
 
-import React from 'react';
-import { FaQuestion, FaHandshake, FaLightbulb } from 'react-icons/fa';
-
-// 1. Interface Simplificada: Não precisamos mais da função 'action'
-interface SupportItem {
-  title: string;
-  icon: React.ReactNode;
-  subject: string;
-  message: string;
-}
+import React from "react";
+import { FaWhatsapp, FaEnvelope } from "react-icons/fa";
 
 const contactEmail = "dev.matheuspc@gmail.com";
+// Sugestão: defina no .env.local => NEXT_PUBLIC_CONTACT_WHATSAPP=+55DDDNNNNNNN
+const contactPhone = process.env.NEXT_PUBLIC_CONTACT_WHATSAPP ?? "+55XXXXXXXXXX";
 
-// 2. Dados Atualizados: A função foi removida
-const supportOptions: SupportItem[] = [
-  {
-    title: "Dúvidas",
-    icon: <FaQuestion size={24} />,
-    subject: "Dúvida sobre o site Consulta CPNU",
-    message: "Olá, gostaria de tirar umas dúvidas sobre o site..."
-  },
-  {
-    title: "Parcerias",
-    icon: <FaHandshake size={24} />,
-    subject: "Proposta de Parceria - Consulta CPNU",
-    message: "Olá, gostaria de propor uma parceria..."
-  },
-  {
-    title: "Sugestões",
-    icon: <FaLightbulb size={24} />,
-    subject: "Sugestão para o site Consulta CPNU",
-    message: "Olá, tenho uma sugestão de melhoria para o site..."
-  },
-];
-
-
-function ContactSection() {
-  return (
-    <section className='w-full py-16 md:py-24'>
-      <div className='container mx-auto flex flex-col items-center gap-8'>
-        <h2 className='text-3xl font-bold tracking-tight'>Área de Suporte</h2>
-        
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl'>
-          {supportOptions.map((item) => {
-            // Criamos o link mailto dinamicamente aqui
-            const mailToLink = `mailto:${contactEmail}?subject=${encodeURIComponent(item.subject)}&body=${encodeURIComponent(item.message)}`;
-            
-            return (
-              // 3. A MUDANÇA PRINCIPAL: Usando <a> em vez de <button>
-              <a
-                key={item.title}
-                href={mailToLink}
-                className="group flex flex-col items-center justify-center p-6 gap-4 bg-gray-800 rounded-lg shadow-lg border border-gray-700/50 hover:bg-gray-700/50 hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="text-indigo-400 group-hover:text-indigo-300 transition-colors">
-                  {item.icon}
-                </div>
-                <span className="font-semibold text-lg text-gray-300 group-hover:text-white transition-colors">
-                  {item.title}
-                </span>
-              </a>
-            );
-          })}
-        </div>
-
-      </div>
-    </section>
-  )
+// Utilitários
+function normalizePhone(phone: string) {
+  return phone.replace(/\D/g, "");
 }
 
-export default ContactSection;
+function mailtoLink(email: string, subject: string, body: string) {
+  return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function whatsappLink(phone: string, text: string) {
+  const normalized = normalizePhone(phone);
+  return `https://wa.me/${normalized}?text=${encodeURIComponent(text)}`;
+}
+
+export default function ContactSection() {
+  // Textos padrões (ajuste como preferir)
+  const heading = "Fale com a gente";
+  const blurb =
+    "Em caso de dúvidas, propostas de parceria, sugestões ou qualquer outro assunto, entre em contato pelos canais abaixo. Teremos prazer em ajudar!";
+
+  const emailSubject = "Contato - Consulta CPNU";
+  const emailBody =
+    "Olá! Gostaria de falar sobre (dúvida/parceria/sugestão). Poderiam me ajudar?";
+  const whatsappText =
+    "Olá! Tenho (dúvida/parceria/sugestão) sobre o Consulta CPNU. Podemos conversar?";
+
+  const mailTo = mailtoLink(contactEmail, emailSubject, emailBody);
+  const wa = whatsappLink(contactPhone, whatsappText);
+
+  return (
+    <section className="w-full py-16 md:py-24">
+      <div className="container mx-auto flex flex-col items-center gap-8 px-4">
+        {/* Cabeçalho / texto introdutório */}
+        <header className="max-w-2xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight">{heading}</h2>
+          <p className="mt-3 text-gray-400">{blurb}</p>
+        </header>
+
+        {/* Duas caixas: WhatsApp e E-mail */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+          {/* Caixa WhatsApp */}
+          <div className="flex flex-col justify-between gap-4 bg-gray-800 rounded-lg border border-gray-700/50 p-6 shadow-lg">
+            <div>
+              <div className="flex items-center gap-2 text-emerald-400 w-full justify-center">
+                <FaWhatsapp aria-hidden />
+                <h3 className="text-xl font-semibold text-white">WhatsApp</h3>
+              </div>
+              <p className="mt-2 text-gray-300">
+                Atendimento rápido e direto. Fale em tempo real e agilize seu
+                contato.
+              </p>
+            </div>
+            <a
+              href={wa}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 transition-colors"
+              aria-label="Iniciar conversa pelo WhatsApp"
+            >
+              <FaWhatsapp />
+              Iniciar conversa
+            </a>
+          </div>
+
+          {/* Caixa E-mail */}
+          <div className="flex flex-col justify-between gap-4 bg-gray-800 rounded-lg border border-gray-700/50 p-6 shadow-lg">
+            <div>
+              <div className="flex items-center gap-2 text-indigo-400 w-full justify-center">
+                <FaEnvelope aria-hidden />
+                <h3 className="text-xl font-semibold text-white">E‑mail</h3>
+              </div>
+              <p className="mt-2 text-gray-300">
+                Ideal para detalhar solicitações, enviar anexos e formalizar
+                demandas.
+              </p>
+            </div>
+            <a
+              href={mailTo}
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 transition-colors"
+              aria-label="Enviar e‑mail"
+            >
+              <FaEnvelope />
+              Enviar e‑mail
+            </a>
+          </div>
+        </div>
+
+        <footer className="text-xs text-gray-500 mt-2 text-center">
+          *Ao clicar, abriremos seu aplicativo de e‑mail ou WhatsApp com a
+          mensagem pré‑preenchida.
+        </footer>
+      </div>
+    </section>
+  );
+}

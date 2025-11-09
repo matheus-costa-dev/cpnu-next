@@ -24,8 +24,16 @@ const links: linksType[] = [
     href: "/dashboard",
   },
   {
+    title: "Sobre",
+    href: "/sobre",
+  },
+  {
     title: "Perguntas Frequentes",
     href: "/faq",
+  },
+  {
+    title: "Contato",
+    href: "/contato",
   },
   {
     title: "Contribuir",

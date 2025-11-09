@@ -9,6 +9,7 @@ type Resultado = {
   cargo: string;
   orgao: string;
   especialidade: string;
+  cod_cargo: number;
   ordem_pref: number;
   class_ampla: number;
   class_ppp: number | null;
@@ -77,36 +78,13 @@ function Hero() {
   const columns: TableColumn<Resultado>[] = [
     { name: "Órgão", selector: (row) => row.orgao, sortable: true },
     { name: "Cargo", selector: (row) => row.cargo, sortable: true },
-    {
-      name: "Especialidade",
-      selector: (row) => row.especialidade,
-      sortable: true,
-    },
+    { name: "Especialidade", selector: (row) => row.especialidade, sortable: true},
+    { name: "Codigo do cargo", selector: (row) => row.cod_cargo, sortable: true},
     { name: "Preferência", selector: (row) => row.ordem_pref, sortable: true },
-    {
-      name: "Ampla",
-      selector: (row) => row.class_ampla,
-      sortable: true,
-      cell: (row) => row.class_ampla ?? "N/A",
-    },
-    {
-      name: "PPP",
-      selector: (row) => row.class_ppp ?? NaN,
-      sortable: true,
-      cell: (row) => row.class_ppp ?? "N/A",
-    },
-    {
-      name: "PCD",
-      selector: (row) => row.class_pcd ?? NaN,
-      sortable: true,
-      cell: (row) => row.class_pcd ?? "N/A",
-    },
-    {
-      name: "Indigena",
-      selector: (row) => row.class_indigena ?? NaN,
-      sortable: true,
-      cell: (row) => row.class_indigena ?? "N/A",
-    },
+    { name: "Ampla", selector: (row) => row.class_ampla, sortable: true, cell: (row) => row.class_ampla ?? "N/A"},
+    { name: "PPP", selector: (row) => row.class_ppp ?? NaN, sortable: true, cell: (row) => row.class_ppp ?? "N/A" },
+    { name: "PCD", selector: (row) => row.class_pcd ?? NaN, sortable: true, cell: (row) => row.class_pcd ?? "N/A" },
+    { name: "Indigena", selector: (row) => row.class_indigena ?? NaN, sortable: true, cell: (row) => row.class_indigena ?? "N/A", },
   ];
 
   return (

@@ -29,6 +29,7 @@ export async function GET(
                 orgao,
                 cargo,
                 especialidade,
+                cod_cargo,
                 ordem_pref,
                 class_ampla,
                 class_ppp,

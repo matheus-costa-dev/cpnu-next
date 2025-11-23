@@ -1,0 +1,33 @@
+import { hygraph } from "@/lib/hygraph";
+import { RichText } from "@graphcms/rich-text-react-renderer";
+
+const QUERY = `
+  query Noticia($id: ID!) {
+    noticia(where: { id: $id }) {
+      id
+      titulo
+      data
+      conteudo {
+        raw
+      }
+    }
+  }
+`;
+
+export default async function NoticiaPage({ params }: { params: { id: string } }) {
+  const { noticia } = await hygraph.request(QUERY, { id: params.id });
+  const data_formatada = new Date(noticia.data).toLocaleDateString("pt-BR");
+
+  return (
+    <div className="min-h-screen w-full text-[#2a2a2a] py-16 px-4 font-serif">
+      <div className="max-w-3xl mx-auto rounded-3xl bg-white p-12 shadow-md border border-gray-300">
+        <h1 className="text-5xl font-bold mb-6 leading-tight">{noticia.titulo}</h1>
+        <p className="text-sm text-gray-600 mb-8 italic">{data_formatada}</p>
+
+        <div className="prose max-w-none prose-headings:font-bold prose-headings:text-black prose-a:text-blue-700 text-wrap">
+          <RichText content={noticia.conteudo.raw} />
+        </div>
+      </div>
+    </div>
+  );
+}

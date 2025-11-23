@@ -16,6 +16,10 @@ const links: linksType[] = [
     href: "/"
   },
   {
+    title: "Noticias",
+    href: "/noticias"
+  },
+  {
     title: "Estimativa",
     href: "/estimativa"
   },
@@ -82,7 +86,7 @@ function Navbar() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo/Título */}
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <Link href="/" className="text-xl sm:text-2xl font-bold text-white tracking-wider">
               Consulta CPNU
             </Link>

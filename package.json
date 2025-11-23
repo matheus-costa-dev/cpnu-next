@@ -9,8 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@graphcms/rich-text-react-renderer": "^0.6.2",
     "@headlessui/react": "^2.2.9",
     "@neondatabase/serverless": "^1.0.2",
+    "graphql-request": "^7.3.4",
     "next": "15.5.4",
     "react": "19.1.0",
     "react-data-table-component": "^7.7.0",

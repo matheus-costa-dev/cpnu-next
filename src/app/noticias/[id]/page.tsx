@@ -25,7 +25,15 @@ export default async function NoticiaPage({ params }: { params: { id: string } }
         <p className="text-sm text-gray-600 mb-8 italic">{data_formatada}</p>
 
         <div className="prose max-w-none prose-headings:font-bold prose-headings:text-black prose-a:text-blue-700 text-wrap">
-          <RichText content={noticia.conteudo.raw} />
+          <RichText 
+            content={noticia.conteudo.raw}
+            renderers={{
+              h1: ({ children }) => <h1 className="text-3xl font-bold mb-4">{children}</h1>,
+              h2: ({ children }) => <h2 className="text-2xl font-bold mb-4">{children}</h2>,
+              p: ({ children }) => <p className="mb-3">{children}</p>
+            }}
+          />
+
         </div>
       </div>
     </div>

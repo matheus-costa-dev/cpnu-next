@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link'; // Use o componente Link do Next.js para navegação interna
-import { FaUserCircle, FaBars, FaTimes } from 'react-icons/fa'; // FaBars é mais comum para hamburger, FaTimes para fechar
+import { FaBars, FaTimes } from 'react-icons/fa'; // FaBars é mais comum para hamburger, FaTimes para fechar
 import { usePathname } from 'next/navigation';
 
 interface linksType {
@@ -69,15 +69,6 @@ function Navbar() {
           </Link>
         )
       })}
-      <a
-        href="https://portfolio-brown-gamma-63.vercel.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-2 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-200"
-      >
-        <FaUserCircle size={18} />
-        <span>Desenvolvedor</span>
-      </a>
     </>
   );
 

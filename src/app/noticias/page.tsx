@@ -16,11 +16,11 @@ export default async function NoticiasPage() {
   const { noticias } = await hygraph.request<{ noticias: Noticia[] }>(QUERY);
 
   return (
-    <div className="min-h-screen w-full py-20">
+    <div className="h-full w-full py-20">
       <div className="container mx-auto px-4 max-w-5xl">
 
         {/* Título */}
-        <h1 className="text-5xl font-extrabold text-center text-white mb-14 tracking-tight">
+        <h1 className="text-2xl font-extrabold text-center text-white mb-14 tracking-tight">
           Notícias
         </h1>
 
